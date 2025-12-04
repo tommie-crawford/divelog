@@ -27,10 +27,10 @@ services:
         image: mysql:8
         container_name: divelog-api-db
         environment:
-            MYSQL_DATABASE: symfony
-            MYSQL_USER: symfony
-            MYSQL_PASSWORD: symfony
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: ${MYSQL_DATE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         ports:
             - "3306:3306"
         volumes:
