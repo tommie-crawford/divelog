@@ -1,3 +1,6 @@
-body {
-    background-color: skyblue;
+.login-bg {
+    background-image: url('/images/dive.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

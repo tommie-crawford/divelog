@@ -1,0 +1,54 @@
+{# templates/login/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid vh-100 d-flex justify-content-center align-items-center login-bg">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+            <div class="card shadow">
+                <div class="card-body p-4">
+
+                    <h1 class="h4 mb-4 text-center">Login</h1>
+
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    <form action="{{ path('app_login') }}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Email</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="_username"
+                                value="{{ last_username }}"
+                                class="form-control"
+                                required
+                                autofocus
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Wachtwoord</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="_password"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Inloggen
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
