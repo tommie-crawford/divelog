@@ -2,8 +2,12 @@ FROM php:8.3-fpm
 
 # Basis extensions voor Symfony + DB + intl etc.
 RUN apt-get update && apt-get install -y \
-    git unzip libicu-dev libpq-dev libzip-dev \
+    git unzip libicu-dev libpq-dev libzip-dev librabbitmq-dev \
     && docker-php-ext-install intl pdo pdo_mysql opcache zip
+
+RUN pecl install amqp
+
+RUN echo "extension=amqp.so" > /usr/local/etc/php/conf.d/amqp.ini
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

@@ -1,23 +1,44 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}New divelog{% endblock %}
 
-{% block body %}
-    <h1>New divelog entry</h1>
+{% block content %}
+    <div class="container my-5">
+        <h1 class="mb-4">New divelog entry</h1>
 
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }}">
-                {{ message }}
-            </div>
+        {# Flash messages as Bootstrap alerts #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                {% set alertClass = (label == 'error') ? 'danger' : label %}
+                <div class="alert alert-{{ alertClass }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
 
-    {{ form_start(form) }}
-    {{ form_row(form.date) }}
-    {{ form_row(form.location) }}
-    {{ form_row(form.notes) }}
+        {{ form_start(form) }}
 
-    <button type="submit">Save</button>
-    {{ form_end(form) }}
+        <div class="mb-3">
+            {{ form_label(form.date, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_widget(form.date, { attr: { class: 'form-control' } }) }}
+            {{ form_errors(form.date) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.location, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_widget(form.location, { attr: { class: 'form-control' } }) }}
+            {{ form_errors(form.location) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.notes, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_widget(form.notes, { attr: { class: 'form-control' } }) }}
+            {{ form_errors(form.notes) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
