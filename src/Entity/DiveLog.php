@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DiveLogRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,17 @@ class DiveLog
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $notes = null;
+
+    /**
+     * @var Collection<int, DiveLogPhoto>
+     */
+    #[ORM\OneToMany(targetEntity: DiveLogPhoto::class, mappedBy: 'divelog')]
+    private Collection $diveLogPhotos;
+
+    public function __construct()
+    {
+        $this->diveLogPhotos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +73,36 @@ class DiveLog
     public function setNotes(string $notes): static
     {
         $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DiveLogPhoto>
+     */
+    public function getDiveLogPhotos(): Collection
+    {
+        return $this->diveLogPhotos;
+    }
+
+    public function addDiveLogPhoto(DiveLogPhoto $diveLogPhoto): static
+    {
+        if (!$this->diveLogPhotos->contains($diveLogPhoto)) {
+            $this->diveLogPhotos->add($diveLogPhoto);
+            $diveLogPhoto->setDivelog($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiveLogPhoto(DiveLogPhoto $diveLogPhoto): static
+    {
+        if ($this->diveLogPhotos->removeElement($diveLogPhoto)) {
+            // set the owning side to null (unless already changed)
+            if ($diveLogPhoto->getDivelog() === $this) {
+                $diveLogPhoto->setDivelog(null);
+            }
+        }
 
         return $this;
     }

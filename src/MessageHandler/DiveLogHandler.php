@@ -10,6 +10,9 @@ final class DiveLogHandler
 {
     public function __invoke(DiveLogMessage $message): void
     {
-        dump('Handled:', $message->getContent());
+
+        foreach($message->getContent() as $content) {
+            dump($content);
+        }
     }
 }

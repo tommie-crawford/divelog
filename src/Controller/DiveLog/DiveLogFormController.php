@@ -13,19 +13,24 @@ Use App\Entity\DiveLog;
 use App\Form\DiveLogType;
 use App\Service\DiveLogManager;
 Use Symfony\Component\Messenger\MessageBusInterface;
+use App\Service\PhotoUploadService;
 
 class DiveLogFormController extends AbstractController
 {
     #[Route('/divelog/new', name: 'app_divelog_new')]
-    public function new(Request $request, DiveLogManager $manager, MessageBusInterface $messageBus): Response
+    public function new(Request $request, DiveLogManager $manager, MessageBusInterface $messageBus, PhotoUploadService $photoUploadService): Response
     {
         $divelog = new DiveLog();
 
         $form = $this->createForm(DiveLogType::class, $divelog);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $message = $manager->save($divelog);
+        if ($form->isSubmitted()) {
+            $files = $form->get('images')->getData() ?? [];
+
+            $images = $photoUploadService->store($files);
+
+            $message = $manager->save($divelog, $images);
             $messageBus->dispatch($message);
 
             return $this->redirectToRoute('dashboard');
