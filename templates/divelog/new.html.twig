@@ -3,7 +3,7 @@
 {% block title %}New divelog{% endblock %}
 
 {% block content %}
-    <div class="container my-5">
+    <div class="container my-4">
         <h1 class="mb-4">New divelog entry</h1>
 
         {# Flash messages as Bootstrap alerts #}
@@ -19,25 +19,25 @@
 
         {{ form_start(form) }}
 
-        <div class="mb-3">
+        <div class="mb-2 col-2">
             {{ form_label(form.date, null, { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.date, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.date) }}
         </div>
 
-        <div class="mb-3">
+        <div class="mb-2 col-3">
             {{ form_label(form.location, null, { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.location, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.location) }}
         </div>
 
-        <div class="mb-3">
+        <div class="mb-2 col-6">
             {{ form_label(form.notes, null, { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.notes, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.notes) }}
         </div>
 
-        <div class="mb-3">
+        <div class="mb-2 col-6">
             {{ form_label(form.images, null, { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.images, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.images) }}

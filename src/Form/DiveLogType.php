@@ -22,7 +22,7 @@ class DiveLogType extends AbstractType
             ->add('notes')
             // 🔽 nieuw veld voor uploads
             ->add('images', FileType::class, [
-                'label' => 'Foto\'s',
+                'label' => 'Picture\'s',
                 'mapped' => false,      // heel belangrijk: bestaat niet als property op DiveLog
                 'required' => false,
                 'multiple' => true,     // meerdere foto’s tegelijk
