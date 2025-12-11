@@ -1,3 +1,14 @@
+## Divelog
+
+Ik gebruik deze applicatie om al mijn duiken te loggen. Ik wil hiermee ervaring krijgen in het symfony framework. 
+
+Gebruikte technieken: 
+
+- Symfony 7.4
+- RabbitMQ
+- Doctrine ORM
+- Docker
+- PHPUnit
 ## 📨 Symfony Messenger + RabbitMQ — Gebruik
 
 Onderstaande stappen tonen hoe je de RabbitMQ-transporten aanmaakt, een testbericht verstuurt en de consumer start.
