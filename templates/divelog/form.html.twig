@@ -1,10 +1,10 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}New divelog{% endblock %}
+{% block title %}Nieuwe duiklog{% endblock %}
 
 {% block content %}
     <div class="container my-4">
-        <h1 class="mb-4">New divelog entry</h1>
+        <h1 class="mb-4">Nieuwe duiklog</h1>
 
         {# Flash messages as Bootstrap alerts #}
         {% for label, messages in app.flashes %}
@@ -20,48 +20,54 @@
         {{ form_start(form) }}
 
         <div class="mb-2 col-2">
-            {{ form_label(form.date, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.date, 'Datum *', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.date, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.date) }}
         </div>
 
         <div class="mb-2 col-3">
-            {{ form_label(form.location, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.location, 'Locatie *', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.location, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.location) }}
         </div>
 
         <div class="mb-2 col-6">
-            {{ form_label(form.notes, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.notes, 'Notities', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.notes, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.notes) }}
         </div>
 
         <div class="mb-2 col-2">
-            {{ form_label(form.maxDepth, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.maxDepth, 'Maximale diepte *', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.maxDepth, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.maxDepth) }}
         </div>
 
         <div class="mb-2 col-3">
-            {{ form_label(form.course, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.course, 'Opleiding', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.course, { attr: { class: 'form-control' } }) }}
             {{ form_errors(form.course) }}
         </div>
 
         <div class="mb-2 col-2">
-            {{ form_label(form.duration, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.duration, 'Duur (In uren) *', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.duration, { attr: { class: 'form-control' } }) }}
+            <small class="form-text text-muted">
+                Vul de totale duiktijd in uren in. Bijvoorbeeld: 1.5
+            </small>
             {{ form_errors(form.duration) }}
         </div>
 
         <div class="mb-2 col-6">
-            {{ form_label(form.images, null, { label_attr: { class: 'form-label' } }) }}
+            {{ form_label(form.images, 'Afbeeldingen', { label_attr: { class: 'form-label' } }) }}
             {{ form_widget(form.images, { attr: { class: 'form-control' } }) }}
+            <small class="form-text text-muted">
+                Meerdere afbeeldingen toevoegen is mogelijk
+            </small>
             {{ form_errors(form.images) }}
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Opslaan</button>
 
         {{ form_end(form) }}
     </div>
