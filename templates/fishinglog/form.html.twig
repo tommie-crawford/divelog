@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Nieuwe vangst{% endblock %}
+
+{% block content %}
+    <div class="container my-4">
+        <h1 class="mb-4">Nieuwe vangst</h1>
+
+        {# Flash messages as Bootstrap alerts #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                {% set alertClass = (label == 'error') ? 'danger' : label %}
+                <div class="alert alert-{{ alertClass }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form) }}
+
+        <div class="mb-2 col-2">
+            {{ form_label(form.date, 'Datum *', { label_attr: { class: 'form-label' } }) }}
+            {{ form_widget(form.date, { attr: { class: 'form-control' } }) }}
+            {{ form_errors(form.date) }}
+        </div>
+
+       <div class="mb-2 col-6">
+            {{ form_label(form.images, 'Afbeeldingen', { label_attr: { class: 'form-label' } }) }}
+            {{ form_widget(form.images, { attr: { class: 'form-control' } }) }}
+            <small class="form-text text-muted">
+                Meerdere afbeeldingen toevoegen is mogelijk
+            </small>
+            {{ form_errors(form.images) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Opslaan</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

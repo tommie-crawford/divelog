@@ -32,6 +32,9 @@ class FishingLog
     #[ORM\OneToMany(targetEntity: FishingLogPhoto::class, mappedBy: 'fishingLog')]
     private Collection $photo;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTime $date = null;
+
     public function __construct()
     {
         $this->photo = new ArrayCollection();
@@ -104,6 +107,18 @@ class FishingLog
                 $photo->setFishingLog(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTime
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTime $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }

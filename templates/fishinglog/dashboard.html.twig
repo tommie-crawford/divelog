@@ -1,0 +1,38 @@
+{# templates/login/dashboard.html.twig #}
+{% extends 'layout.html.twig' %}
+
+{# ... #}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-striped table-sm align-middle">
+                    <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Tijd</th>
+                        <th>Locatie</th>
+                        <th>Type</th>
+                        <th>Lengte</th>
+                        <th>Gewicht</th>
+                        <th>Aas</th>
+                        <th>Bewerken</th>
+                        <th>Verwijderen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for catch in catches %}
+
+                    {% endfor %}
+
+                    Total: {{ catches | length }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
